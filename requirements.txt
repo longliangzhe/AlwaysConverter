@@ -1,0 +1,27 @@
+# AlwaysConverter 依赖文件
+
+# 基础依赖
+PyYAML>=6.0
+colorlog>=6.7.0
+
+# 文件类型检测
+python-magic>=0.4.27
+
+# 图片处理
+Pillow>=9.0.0
+
+# 音频处理
+pydub>=0.25.1
+
+# 视频处理
+moviepy>=1.0.3
+
+# 文档处理
+python-docx>=0.8.11
+PyPDF2>=3.0.1
+odfpy>=1.4.1
+reportlab>=3.6.12
+
+# 压缩文件处理
+rarfile>=4.0
+py7zr>=0.20.0
