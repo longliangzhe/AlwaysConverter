@@ -197,3 +197,7 @@ python test_cli.py
 ## 许可证
 
 MIT License
+
+## 不支持的文件类型？
+
+报告在issues，每周我会更新一次
