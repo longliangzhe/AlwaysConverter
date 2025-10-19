@@ -5,11 +5,11 @@
 安装脚本
 帮助用户安装所有必要的依赖
 """
-
 import os
 import sys
 import platform
 import subprocess
+os.system("pip install loguru")
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
