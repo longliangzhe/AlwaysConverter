@@ -81,12 +81,23 @@ def install_python_deps():
     try:
         # 升级pip
         subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "pip"], check=True)
-        # 安装requirements.txt中的依赖
-        subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], check=True)
-        logger.info("Python依赖安装成功")
-        return True
-    except subprocess.CalledProcessError as e:
-        logger.error(f"安装Python依赖失败: {e}")
+        # 安装requirements.txt中的依赖，指定编码方式
+        result = subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], 
+                               capture_output=True, text=True, encoding='utf-8')
+        if result.returncode != 0:
+            # 如果UTF-8编码失败，尝试其他编码方式
+            logger.warning("使用UTF-8编码安装失败，尝试其他编码方式...")
+            result = subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], 
+                                   capture_output=True, text=True, encoding='latin1')
+        
+        if result.returncode == 0:
+            logger.info("Python依赖安装成功")
+            return True
+        else:
+            logger.error(f"安装Python依赖失败: {result.stderr}")
+            return False
+    except Exception as e:
+        logger.error(f"安装Python依赖时发生异常: {e}")
         return False
 
 
